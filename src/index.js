@@ -1,9 +1,9 @@
-import Data from './config.js';
+import Data from '../config.js';
 import {
     forecastOfDay,
     fiveDaysForecast,
     hourlyChart
-} from './functions.js';
+} from '../functions.js';
 
 const search = () => {
     const todayForecast = document.getElementById('todayForecast');

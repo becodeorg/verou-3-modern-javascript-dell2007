@@ -79,6 +79,7 @@ export const hourlyChart = (data) => {
     const timeStamp = [];
     const xLabelTime = [];
     const hourlyForecast = [];
+    const realTempFeel = [];
     for (let t = 0; t < 24; t++) {
         const localTime = data.hourly[t].dt + data.timezone_offset;
         const h = new Date(localTime * 1000).getHours();
@@ -86,7 +87,8 @@ export const hourlyChart = (data) => {
         timeStamp.push(h + 'H - ' + d);
         xLabelTime.push(h + 'H');
         hourlyForecast.push(Math.round(data.hourly[t].temp));
+        realTempFeel.push(Math.round(data.hourly[t].feels_like));
     }
 
-    forecastChart(hourlyForecast, timeStamp, xLabelTime); //Export from third JS file
+    forecastChart(hourlyForecast, timeStamp, xLabelTime, realTempFeel); //Export from third JS file
 }
