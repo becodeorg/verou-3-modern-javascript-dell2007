@@ -4,6 +4,7 @@ import {
     fiveDaysForecast,
     hourlyChart
 } from '../functions.js';
+import './style.scss';
 
 const search = () => {
     const todayForecast = document.getElementById('todayForecast');
