@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 module.exports = {
     // mode: 'development',
     module: {
@@ -15,5 +16,5 @@ module.exports = {
         ]
     },
 
-    devtool: 'source-map'
-}
+    devtool: "source-map"
+};

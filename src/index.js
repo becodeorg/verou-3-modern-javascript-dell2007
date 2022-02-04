@@ -1,21 +1,21 @@
-import Data from '../config.js';
+import Data from "../config.js";
 import {
     forecastOfDay,
     fiveDaysForecast,
     hourlyChart
-} from '../functions.js';
-import './style.scss';
+} from "../functions.js";
+import "./style.scss";
 
 const search = () => {
-    const todayForecast = document.getElementById('todayForecast');
-    const dailyCarousel = document.getElementById('carousel');
-    const chartPerHour = document.getElementById('hourlyChart');
-    const carouselControl = document.getElementById('carouselExampleIndicators');
-    carouselControl.style.display = 'block';
+    const todayForecast = document.getElementById("todayForecast");
+    const dailyCarousel = document.getElementById("carousel");
+    const chartPerHour = document.getElementById("hourlyChart");
+    const carouselControl = document.getElementById("carouselExampleIndicators");
+    carouselControl.style.display = "block";
     todayForecast.innerHTML = " ";
     dailyCarousel.innerHTML = " "; //Remove information when search again
     chartPerHour.innerHTML = " ";
-    const searchBar = document.getElementById('searchBar');
+    const searchBar = document.getElementById("searchBar");
     let cityName = searchBar.value.toLowerCase();
 
 
@@ -26,10 +26,10 @@ const search = () => {
 
             //Change background as per the city name
             const randomImg = Math.floor(Math.random() * image.results.length);
-            document.body.style.backgroundImage = 'url(' + image.results[randomImg].urls.regular + ')';
+            document.body.style.backgroundImage = "url(" + image.results[randomImg].urls.regular + ")";
 
             //API to search by city name
-            fetch('http://api.openweathermap.org/data/2.5/forecast?q=' + cityName + '&units=metric&appid=' + Data.key)
+            fetch("http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=metric&appid=" + Data.key)
                 .then(response => response.json())
                 .then(result => {
 
@@ -38,23 +38,23 @@ const search = () => {
                     const lon = result.city.coord.lon;
 
                     //API  to daily forecast
-                    fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude=minutely,alert&units=metric&appid=' + Data.key)
+                    fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,alert&units=metric&appid=" + Data.key)
                         .then(response => response.json())
                         .then(data => {
                             forecastOfDay(result, data);
                             fiveDaysForecast(data);
                             hourlyChart(data);
-                        })
-                })
-        })
-}
+                        });
+                });
+        });
+};
 search;
 
 //Search events
-const searchButton = document.getElementById('submitButton');
-searchButton.addEventListener('click', search);
-window.addEventListener('keydown', event => {
-    if (event.key === 'Enter') {
+const searchButton = document.getElementById("submitButton");
+searchButton.addEventListener("click", search);
+window.addEventListener("keydown", event => {
+    if (event.key === "Enter") {
         search();
     }
 });

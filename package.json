@@ -21,6 +21,7 @@
   "homepage": "https://github.com/becodeorg/verou-3-modern-javascript-dell2007#readme",
   "devDependencies": {
     "css-loader": "^6.6.0",
+    "eslint": "^8.8.0",
     "sass": "^1.49.7",
     "sass-loader": "^12.4.0",
     "style-loader": "^3.3.1",
